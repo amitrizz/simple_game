@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn</title>
+    <style>
+      h1 {
+        background: #ec5353;
+      }
+      .sbox {
+        width: 60%;
+        background: #a3dcf3a2;
+        color: beige;
+        height: 50px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.226);
+        border: 1px solid grey;
+        border-radius: 10px;
+        animation-name: move;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      @keyframes move {
+        0% {
+          transform: translateX(400px);
+        }
+        100% {
+          transform: translateX(-400px);
+        }
+      }
+      #box {
+        width: 70%;
+        background: #e2d3d32f;
+        height: 100vh;
+        display: flex;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+        box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.226);
+        border: 1px solid grey;
+        border-radius: 10px;
+        overflow-x: hidden;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        padding: 20px;
+      }
+
+      .todo {
+        background: #d36ffa41;
+        width: 67%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5px;
+        padding: 10px;
+        box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.226);
+        border: 1px solid grey;
+        border-radius: 10px;
+    }
+    .todo button{
+        margin-bottom: 5px;
+        height: 30px;
+        background: #e6f36c56;
+        border: none;
+        border-radius: 3px;
+        box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.226);
+      }
+      .todo input{
+        border-top: none;
+        border-right: none;
+        background: transparent;
+        border-color: rgba(128, 128, 128, 0.39);
+        border-radius: 5px;
+        padding: 5px;
+        font-size: medium;
+        font-weight: 600;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo">
+        <button onclick="startGame()">Enter Number To Start</button>
+        <input
+          type="number"
+          name="number"
+          id="text"
+          placeholder="Enter Your Number ..."
+          min="0"
+          max="50"
+          required
+        />
+      </div>
+      <div id="box">
+        <!-- <div class="sbox"></div> -->
+      </div>
+    </div>
+    <script>
+      var div = document.getElementById("box");
+      var num = 2;
+      var currentTime;
+      
+      function startGame() {
+        var text = parseInt(document.getElementById("text").value);
+        for (let i = 0; i < text; i++) {
+          // adddiv()
+          setTimeout(adddiv, i * 500);
+        }
+      }
+
+      function adddiv() {
+        // var text = document.getElementById("text");
+        var sdiv = document.createElement("div");
+        // var val = document.createElement("div");
+        // val.innerText = text.value;
+        sdiv.classList.add("sbox");
+
+        var button = document.createElement("button");
+        button.classList.add("cross");
+
+        button.innerText = "Delete";
+        button.addEventListener("click", () => {
+          console.log("yes event is occur");
+          // sdiv.removeChild(button);
+          // sdiv.removeChild(val);
+          div.removeChild(sdiv);
+          var num=div.childElementCount;
+          if(num==0){
+            alert(`Game over `)
+          }
+        });
+        // sdiv.appendChild(val);
+        sdiv.appendChild(button);
+        div.appendChild(sdiv);
+      }
+    </script>
+  </body>
+</html>
